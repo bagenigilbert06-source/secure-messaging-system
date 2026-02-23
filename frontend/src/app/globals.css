@@ -1,0 +1,846 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-feature-settings: 'cv10' 1;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-timeline: auto;
+}
+
+body {
+  font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  letter-spacing: -0.3px;
+  overflow-x: hidden;
+}
+
+/* GPU acceleration for smooth scrolling */
+main, section, nav {
+  will-change: auto;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .font-display {
+    @apply font-black tracking-tight;
+  }
+
+  /* Premium glass morphism */
+  .glass {
+    @apply backdrop-blur-3xl bg-white/10 border border-white/20 shadow-2xl;
+  }
+
+  .glass-dark {
+    @apply backdrop-blur-2xl bg-black/40 border border-white/5 shadow-2xl;
+  }
+
+  /* Luxury utilities */
+  .premium-glow {
+    box-shadow: 0 0 60px rgba(16, 185, 129, 0.15), 0 0 30px rgba(16, 185, 129, 0.1);
+  }
+
+  .luxury-transition {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  /* Smooth animations */
+  .smooth-bounce {
+    animation: smooth-bounce 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  @keyframes smooth-bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  /* Fast performance animations */
+  .instant-transition {
+    @apply transition-all duration-150 ease-in-out;
+  }
+
+  /* Inquiry card optimizations */
+  .inquiry-card {
+    @apply will-change-transform transform-gpu;
+  }
+
+  .animate-drift {
+    animation: drift 10s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-glow-pulse {
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-emerald-400 to-teal-500 bg-clip-text text-transparent;
+  }
+
+  /* Apple iOS 18+ Liquid Glass - Clean dark theme */
+  .liquid-glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px) saturate(120%) brightness(0.98) contrast(1.05);
+    -webkit-backdrop-filter: blur(20px) saturate(120%) brightness(0.98) contrast(1.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 
+      inset 0 1px 2px rgba(255, 255, 255, 0.08),
+      0 0 1px rgba(0, 0, 0, 0.4),
+      0 2px 10px rgba(0, 0, 0, 0.25);
+    position: relative;
+    overflow: hidden;
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    contain: layout style paint;
+  }
+
+  /* Hover state - neutral dark */
+  .liquid-glass:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 
+      inset 0 1px 2px rgba(255, 255, 255, 0.1),
+      0 0 1px rgba(0, 0, 0, 0.4),
+      0 2px 14px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .liquid-glass::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    pointer-events: none;
+  }
+
+  .liquid-glass-glow {
+    position: relative;
+  }
+
+  /* Smooth field transitions - GPU accelerated */
+  .input-field-smooth {
+    transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: border-color, box-shadow;
+    transform: translateZ(0);
+  }
+
+  .input-field-smooth:focus {
+    transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  /* Performance optimization for smooth animations */
+  .motion-div {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  /* Passive scroll listener optimization */
+  @supports (scroll-behavior: smooth) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* Messaging System Styles */
+  .message-card {
+    @apply transition-all duration-200 hover:shadow-md;
+  }
+
+  .message-card-own {
+    @apply bg-gradient-to-br from-teal-50 to-cyan-50 dark:from-teal-950/20 dark:to-cyan-950/20;
+  }
+
+  .message-card-other {
+    @apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700;
+  }
+
+  .message-thread-container {
+    @apply flex flex-col gap-3;
+  }
+
+  /* WhatsApp Message Area */
+  .message-thread-area {
+    @apply flex-1 overflow-y-auto message-thread-scroll bg-background flex flex-col;
+    scroll-behavior: smooth;
+  }
+
+  /* WhatsApp Message Group */
+  .message-group-container {
+    @apply flex items-end gap-2;
+  }
+
+  .message-group-sent {
+    @apply justify-end;
+  }
+
+  .message-group-received {
+    @apply justify-start;
+  }
+
+  .conversation-item {
+    @apply px-4 py-3 transition-all duration-200 border-r-2 border-r-transparent focus:outline-none border-b border-border/20;
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .conversation-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .conversation-item-selected {
+    @apply border-r-primary;
+    background: rgba(34, 197, 94, 0.1);
+    backdrop-filter: blur(12px) saturate(120%);
+    -webkit-backdrop-filter: blur(12px) saturate(120%);
+    border-left: 3px solid rgba(34, 197, 94, 0.4);
+  }
+
+  .unread-badge {
+    @apply inline-flex items-center justify-center h-6 w-6 rounded-full bg-gradient-to-r from-teal-500 to-cyan-500 text-white text-xs font-semibold;
+  }
+
+  .status-badge {
+    @apply inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium;
+  }
+
+  .status-badge-unread {
+    @apply bg-teal-50 dark:bg-teal-950/30 text-teal-700 dark:text-teal-300;
+  }
+
+  .status-badge-read {
+    @apply bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300;
+  }
+
+  .status-badge-replied {
+    @apply bg-purple-50 dark:bg-purple-950/30 text-purple-700 dark:text-purple-300;
+  }
+
+  .message-input-container {
+    @apply space-y-3 py-4;
+    background: hsl(var(--background));
+    border-color: hsl(var(--border));
+  }
+
+  .message-textarea {
+    @apply w-full resize-none border px-4 py-2.5 text-sm transition-all duration-200 disabled:opacity-50;
+    background: hsl(var(--input));
+    border-color: hsl(var(--border));
+    color: hsl(var(--foreground));
+    border-radius: 24px;
+    max-height: 120px;
+    min-height: auto;
+  }
+
+  .message-textarea::placeholder {
+    color: hsl(var(--muted-foreground) / 0.5);
+  }
+
+  .message-textarea:focus {
+    @apply outline-none border-primary;
+    box-shadow: 0 0 0 3px hsl(var(--primary) / 0.12);
+    background: hsl(var(--input) / 0.8);
+  }
+
+  .message-textarea:focus::placeholder {
+    color: hsl(var(--muted-foreground) / 0.3);
+  }
+
+  .message-button-send {
+    @apply gap-2 bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-600 hover:to-cyan-600 dark:from-teal-600 dark:to-cyan-600 dark:hover:from-teal-700 dark:hover:to-cyan-700 text-white transition-colors;
+  }
+
+  /* Deleted Message Styling */
+  .message-deleted {
+    @apply opacity-70;
+  }
+
+  .message-deleted-text {
+    @apply text-sm text-foreground/60 italic;
+  }
+
+  /* Message animation utilities */
+  .message-enter {
+    animation: messageEnter 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .message-scale-in {
+    animation: messageScaleIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .message-slide-in {
+    animation: messageSlideIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .message-bubble {
+    animation: bubbleEntrance 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .typing-indicator {
+    animation: typingBounce 1.4s infinite;
+  }
+
+  .delivery-pulse {
+    animation: deliveryPulse 1.5s ease-in-out infinite;
+  }
+
+  .checkmark-animate {
+    animation: checkmark 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .shimmer-effect {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  /* WhatsApp-style transitions */
+  .whatsapp-transition {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .whatsapp-smooth {
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  /* Message bubble styling - WhatsApp-like */
+  .message-bubble {
+    @apply break-words text-pretty;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    word-break: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+  }
+
+  .message-bubble p {
+    @apply leading-relaxed;
+    margin: 0;
+  }
+
+  .message-bubble-received {
+    @apply text-foreground text-base px-0 py-0;
+    background: transparent;
+    max-width: 100%;
+    word-wrap: break-word;
+  }
+
+  .message-bubble-received:hover {
+    background: transparent;
+  }
+
+  .message-bubble-sent {
+    @apply px-3 py-2 text-white rounded-2xl rounded-br-none shadow-none;
+    background: #16a34a;
+    max-width: 100%;
+    word-wrap: break-word;
+  }
+
+  .message-bubble-sent:hover {
+    background: #15803d;
+  }
+
+  .message-bubble-sent p {
+    @apply leading-normal text-base;
+    margin: 0;
+  }
+
+  .message-bubble-received p {
+    @apply leading-normal text-base;
+    margin: 0;
+  }
+
+  .message-bubble:focus {
+    outline: none;
+  }
+
+  .message-bubble-sent:focus {
+    outline: none;
+  }
+
+  .message-bubble-received:focus {
+    outline: none;
+  }
+
+  /* Message bubble container for proper spacing */
+  .message-bubble-container {
+    @apply flex gap-2 mb-2 flex-wrap items-flex-end;
+  }
+
+  .message-bubble-container-sent {
+    @apply justify-end;
+  }
+
+  .message-bubble-container-received {
+    @apply justify-start;
+  }
+
+  /* Message Context Menu Styles */
+  .message-context-menu {
+    @apply rounded-xl bg-background border border-border shadow-lg z-50 overflow-hidden;
+  }
+
+  .message-context-menu-item {
+    @apply w-full flex items-center gap-3 px-4 py-2 text-sm text-foreground hover:bg-white/10 transition-colors cursor-pointer;
+  }
+
+  .message-context-menu-item:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
+  .message-context-menu-divider {
+    @apply border-t border-border;
+  }
+
+  .message-context-menu-destructive {
+    @apply text-destructive hover:bg-destructive/10;
+  }
+
+  /* Emoji Reactions Styles */
+  .reaction-emoji {
+    @apply p-1.5 rounded transition-all duration-150 text-lg hover:scale-110 active:scale-95 cursor-pointer;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .reaction-emoji:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .reaction-pill {
+    @apply px-2.5 py-1 rounded-full text-xs flex items-center gap-1 transition-all duration-200 cursor-pointer font-medium;
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .reaction-pill:hover {
+    @apply scale-105 shadow-md;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+  }
+
+  .reaction-pill-active {
+    @apply text-primary-foreground font-semibold ring-1;
+    background-color: rgba(34, 197, 94, 0.4);
+    border-color: rgba(34, 197, 94, 0.6);
+    ring-color: rgba(34, 197, 94, 0.5);
+    box-shadow: 
+      inset 0 1px 2px rgba(255, 255, 255, 0.1),
+      0 2px 6px rgba(34, 197, 94, 0.2);
+  }
+
+  .reaction-pill-active:hover {
+    background-color: rgba(34, 197, 94, 0.5);
+    border-color: rgba(34, 197, 94, 0.7);
+    ring-color: rgba(34, 197, 94, 0.6);
+    box-shadow: 
+      inset 0 1px 2px rgba(255, 255, 255, 0.15),
+      0 2px 8px rgba(34, 197, 94, 0.3);
+  }
+
+  .reactions-container {
+    @apply flex flex-wrap gap-1.5 px-1;
+  }
+
+  /* Reply Preview Box */
+  .reply-preview {
+    @apply p-3 bg-primary/10 border-l-4 border-primary rounded-lg flex items-center justify-between gap-3 mb-3 backdrop-blur-sm;
+  }
+
+  .reply-preview-text {
+    @apply flex-1 min-w-0;
+  }
+
+  .reply-preview-sender {
+    @apply text-xs text-foreground/70 font-medium;
+  }
+
+  .reply-preview-content {
+    @apply text-sm text-foreground truncate mt-1;
+  }
+
+  .reply-preview-close {
+    @apply p-2 hover:bg-primary/20 rounded-full transition-colors flex-shrink-0 hover:scale-105 active:scale-95;
+  }
+
+  /* Conversation item hover effect */
+  .conversation-hover:hover {
+    animation: conversationHover 0.2s ease-out forwards;
+  }
+
+  /* Loading skeleton shimmer */
+  .skeleton-shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted)),
+      hsl(var(--muted) / 0.5),
+      hsl(var(--muted))
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  /* Smooth scroll for message areas */
+  .message-area {
+    scroll-behavior: smooth;
+  }
+
+  /* Responsive message container */
+  @media (max-width: 640px) {
+    .message-thread-area {
+      @apply px-2 py-4;
+    }
+
+    .message-bubble-sent,
+    .message-bubble-received {
+      max-width: min(90%, 280px);
+    }
+  }
+
+  @media (min-width: 641px) and (max-width: 1024px) {
+    .message-bubble-sent,
+    .message-bubble-received {
+      max-width: min(80%, 420px);
+    }
+  }
+
+  @media (min-width: 1025px) {
+    .message-bubble-sent,
+    .message-bubble-received {
+      max-width: min(65%, 550px);
+    }
+  }
+
+  /* Pulse for unread badge */
+  .unread-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Conversation list scrollbar */
+  .conversation-list-scroll::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .conversation-list-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .conversation-list-scroll::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .conversation-list-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+  }
+
+  /* Message thread scrollbar */
+  .message-thread-scroll::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .message-thread-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .message-thread-scroll::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .message-thread-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+  }
+
+}
+
+@keyframes drift {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  33% {
+    transform: translateY(-30px) translateX(15px);
+  }
+  66% {
+    transform: translateY(15px) translateX(-20px);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    opacity: 0.5;
+    filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.3));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.5));
+  }
+}
+
+/* Optimized GPU-accelerated animations - iOS standard */
+@keyframes field-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes field-slide-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@keyframes subtle-focus {
+  from {
+    transform: translateZ(0);
+  }
+  to {
+    transform: translateZ(0);
+  }
+}
+
+/* Message Entry Animation */
+@keyframes messageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Message Scale In Animation */
+@keyframes messageScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Typing Indicator Bounce - WhatsApp Style */
+@keyframes typingBounce {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+  30% {
+    transform: translateY(-8px);
+    opacity: 1;
+  }
+}
+
+/* WhatsApp Message Slide In */
+@keyframes messageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Message Delivery Pulse */
+@keyframes deliveryPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* WhatsApp Shimmer Effect */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Conversation List Item Hover */
+@keyframes conversationHover {
+  from {
+    background-color: transparent;
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}
+
+/* Message Bubble Entrance */
+@keyframes bubbleEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scaleX(0.9);
+  }
+  50% {
+    transform: translateY(0) scaleX(1);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scaleX(1);
+  }
+}
+
+/* Check Mark Animation */
+@keyframes checkmark {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotate(-45deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+  /* Smooth fade transitions */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  /* Date separator styling - WhatsApp style */
+  .message-date-separator {
+    @apply flex justify-center mb-4 mt-2;
+  }
+
+  .message-date-badge {
+    @apply text-xs text-foreground/50 px-3 py-1 rounded-full bg-background/50 backdrop-blur-sm border border-border/30 font-medium;
+  }
+
+@layer base {
+  :root {
+    /* Clean dark theme - neutral grays, no blue/green tint */
+    --background: 0 0% 5%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 11%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 13%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 152 71% 44%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 18%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 45%;
+    --muted-foreground: 0 0% 85%;
+    --accent: 152 71% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 16%;
+    --input: 0 0% 10%;
+    --ring: 152 71% 44%;
+    --chart-1: 152 71% 44%;
+    --chart-2: 152 71% 50%;
+    --chart-3: 30 100% 50%;
+    --chart-4: 0 84% 60%;
+    --chart-5: 45 100% 55%;
+    --radius: 0.75rem;
+    --sidebar-background: 0 0% 8%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 152 71% 44%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 25%;
+    --sidebar-accent-foreground: 152 71% 44%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 152 71% 44%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html, body {
+    @apply bg-background text-foreground;
+    background: #0d0d0d;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Enhanced dark backgrounds - neutral gray */
+  .dark-bg-enhanced {
+    @apply bg-background;
+    background: #0d0d0d;
+  }
+
+  .glass-bg-subtle {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+}
